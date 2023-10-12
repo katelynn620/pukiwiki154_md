@@ -1,10 +1,13 @@
 # pukiwiki
+wiki
+diff
 backup
 cache
-diff
-image
-wiki
 attach
+counter
+image
+shortener
+shortener_counter
 
 # composer
 vendor

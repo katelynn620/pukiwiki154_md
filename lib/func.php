@@ -469,7 +469,10 @@ function do_search($word, $type = 'AND', $non_format = FALSE, $base = '')
 
 	$retval = '<ul>' . "\n";
 	foreach (array_keys($pages) as $page) {
-		$r_page  = rawurlencode($page);
+		// $r_page  = rawurlencode($page);
+		// $rr_page = get_short_url_from_pagename($page); //変更後
+		// $r_page = substr($rr_page, 1); //変更後はこの1行を追加しておいて?を1文字削る
+		$r_page = get_short_url_from_pagename($page);
 		$s_page  = htmlsc($page);
 		$passage = $show_passage ? ' ' . get_passage_html_span($page) : '';
 		$retval .= ' <li><a href="' . get_base_uri() . '?cmd=read&amp;page=' .
@@ -904,11 +907,12 @@ function get_base_uri($uri_type = PKWK_URI_RELATIVE)
  */
 function get_page_uri($page, $uri_type = PKWK_URI_RELATIVE)
 {
-	global $page_uri_handler, $defaultpage;
-	if ($page === $defaultpage) {
-		return get_base_uri($uri_type);
-	}
-	return get_base_uri($uri_type) . $page_uri_handler->get_page_uri_virtual_query($page);
+	return get_base_uri($uri_type) . get_short_url_from_pagename($page); // ※ライブラリの仕様を一部変更し、2019/06/03記事公開当初の記述に戻した
+	// global $page_uri_handler, $defaultpage;
+	// if ($page === $defaultpage) {
+	// 	return get_base_uri($uri_type);
+	// }
+	// return get_base_uri($uri_type) . $page_uri_handler->get_page_uri_virtual_query($page);
 }
 
 // Get absolute-URI of this script

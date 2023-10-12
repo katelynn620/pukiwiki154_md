@@ -884,7 +884,8 @@ function make_pagelink($page, $alias = '', $anchor = '', $refer = '', $isautolin
 			'">' . $s_alias . '</a>' . $al_right;
 	} else {
 		// Support Page redirection
-		$r_page  = rawurlencode($page);
+		// $r_page  = rawurlencode($page);
+		$r_page  = get_short_url_from_pagename($page);
 		$r_refer = ($refer == '') ? '' : '&amp;refer=' . rawurlencode($refer);
 		$redirect_page = get_pagename_on_redirect($page);
 		if ($redirect_page !== false) {

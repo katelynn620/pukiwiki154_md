@@ -43,6 +43,13 @@ if ($notify) {
 	require(LIB_DIR . 'mail.php'); // Mail notification
 }
 
+// URL短縮ライブラリロード
+require(LIB_DIR . 'shorturl.php');
+// ページ名上書きセット
+
+$vars['page'] = get_pagename_from_short_url($vars['page']);
+
+
 /////////////////////////////////////////////////
 // Main
 if ($vars['page'] === FALSE) {
